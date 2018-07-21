@@ -117,9 +117,9 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/google-apps-script@0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.21.tgz#5e08c42ffbb7fceee1031b033142776c6ede719f"
+"@types/google-apps-script@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.26.tgz#fc79754214b8583d14352bae74f7777f1e72d0bc"
 
 "@types/jest@^22.2.3":
   version "22.2.3"
