@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    "module": "es2015",
+    "typeRoots" : ["./src/typings"],
+    "types": ["google-apps-script", "jest"]
+  }
+}
