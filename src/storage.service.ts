@@ -89,7 +89,7 @@ export class StorageService {
   static getSpreadSheet(today: Date): Spreadsheet {
     let properties = PropertiesService.getScriptProperties();
     let file_id = properties.getProperty(PROPERTY_FILE_ID)
-    let spreadsheet = SpreadsheetApp.openById(file_id)
+    return SpreadsheetApp.openById(file_id)
   }
   static putData(today: Date, id: string, name: string, when: string): Operations {
     let spreadsheet = StorageService.getSpreadSheet(today)
@@ -97,6 +97,7 @@ export class StorageService {
     return StorageService.modifyData(sheet, id, name, when)
   }
   static getData(today: Date): ShiftTable {
+    let properties = PropertiesService.getScriptProperties();
     let spreadsheet = StorageService.getSpreadSheet(today)
     let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
     let times = properties.getProperty(PROPERTY_TIMES)
