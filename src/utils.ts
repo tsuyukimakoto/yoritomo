@@ -29,7 +29,7 @@ function generate_sheetnames(today: Date): string[] {
 }
 
 function generate_filename(today: Date): string {
-  return `{tody.getFullYear()}_{today.getMonth() + 1}_{today.getDate()}`
+  return `${today.getFullYear()}_${today.getMonth() + 1}_${today.getDate()}`
 }
 
 export { generate_filename, generate_sheetname, generate_sheetnames, monday_of_week }

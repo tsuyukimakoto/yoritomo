@@ -16,7 +16,7 @@ export class ConfigService {
     if (workdays == null) {
       properties.setProperty(PROPERTY_WORK_DAYS_OF_WEEK, WORK_DAYS_OF_WEEK_DEFAULT)
       console.info(
-        `SET DEFAULT WORKDAY TO SCRIPT PROPERTY ({PROPERTY_WORK_DAYS_OF_WEEK}: {WORK_DAYS_OF_WEEK_DEFAULT})`
+        `SET DEFAULT WORKDAY TO SCRIPT PROPERTY (${PROPERTY_WORK_DAYS_OF_WEEK}: ${WORK_DAYS_OF_WEEK_DEFAULT})`
       )
     }
   }
@@ -26,7 +26,7 @@ export class ConfigService {
     if (times == null) {
       properties.setProperty(PROPERTY_TIMES, TIMES_DEFAULT)
       console.info(
-        `SET SCRIPT PROPERTY({PROPERTY_TIMES}:{TIMES_DEFAULT}), this is default and can change.`
+        `SET SCRIPT PROPERTY(${PROPERTY_TIMES}:${TIMES_DEFAULT}), this is default and can change.`
       )
     }
   }
@@ -35,7 +35,7 @@ export class ConfigService {
     let workdays = properties.getProperty(PROPERTY_WORK_DAYS_OF_WEEK)
     if (workdays == null) {
       console.error(
-        `MISSING WORKDAYS, YOU SHOULD TO SET SCRIPT PROPERTY({PROPERTY_WORK_DAYS_OF_WEEK}) like {WORK_DAYS_OF_WEEK_DEFAULT}.`
+        `MISSING WORKDAYS, YOU SHOULD TO SET SCRIPT PROPERTY(${PROPERTY_WORK_DAYS_OF_WEEK}) like ${WORK_DAYS_OF_WEEK_DEFAULT}.`
       )
       return false
     }
@@ -47,7 +47,7 @@ export class ConfigService {
     let webhook_url = properties.getProperty(PROPERTY_WEBFOOK_URL)
     if (webhook_url == null) {
       console.error(
-        `No WebhookURL found. You need set webhook_url to script property {PROPERTY_WEBFOOK_URL}.`
+        `No WebhookURL found. You need set webhook_url to script property ${PROPERTY_WEBFOOK_URL}.`
       )
     }
     return webhook_url

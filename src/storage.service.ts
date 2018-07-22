@@ -25,7 +25,7 @@ export class StorageService {
       console.info('NO FOLDER FOUND')
       folder = DriveApp.createFolder(FOLDER_NAME)
       properties.setProperty(PROPERTY_FOLDER_ID, folder.getId())
-      console.info(`CREATE FOLDER AND SET SCRIPT PROPERTY({PROPERTY_FOLDER_ID}:{folder.getId()})`)
+      console.info(`CREATE FOLDER AND SET SCRIPT PROPERTY(${PROPERTY_FOLDER_ID}:${folder.getId()})`)
 
       ConfigService.set_default_work_days()
       ConfigService.set_default_times()
@@ -53,7 +53,7 @@ export class StorageService {
       }
       properties.setProperty(PROPERTY_FILE_ID, spreadsheet.getId())
       console.info(
-        `CREATE Spreadsheet AND SET PROPERTY ({PROPERTY_FILE_ID}: {spreadsheet.getId()})`
+        `CREATE Spreadsheet AND SET PROPERTY (${PROPERTY_FILE_ID}: ${spreadsheet.getId()})`
       )
       let root_folder = DriveApp.getRootFolder()
       let spreadsheet_file = DriveApp.getFileById(spreadsheet.getId())

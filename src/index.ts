@@ -1,7 +1,12 @@
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions
+import TextOutput = GoogleAppsScript.Content.TextOutput
 
 import { ConfigService } from './config.service'
-import { Action } from './models'
+import { StorageService } from './storage.service'
+import { ACTION_TEXT } from './constants'
+import { Action, PostEvent } from './models'
+
+declare var global: any
 
 function send_message(data: object) {
   let payload = JSON.stringify(data)
@@ -21,7 +26,9 @@ function send_message(data: object) {
   }
 }
 
-function send_question() {
+global.send_question = (): void => {
+  let today = new Date()
+  StorageService.prepareStorage(today)
   let actions: Action[] = []
   let times = ConfigService.get_times()
 
@@ -38,9 +45,28 @@ function send_question() {
       }
     ]
   }
-  if (ConfigService.is_workday(new Date())) {
+  if (ConfigService.is_workday(today)) {
     send_message(data)
   } else {
     console.info('today is not workday.')
   }
+}
+
+global.doPost = (e: PostEvent): TextOutput => {
+  let jsonData = JSON.parse(decodeURIComponent(e.parameter.payload))
+  let action = StorageService.putData(
+    new Date(),
+    jsonData.user.id,
+    jsonData.user.name,
+    jsonData.actions[0].value
+  )
+  let action_text = `<@${jsonData.user.id}>: ${jsonData.actions[0].value} (${ACTION_TEXT[action]})`
+  let replyMessage = {
+    replace_original: false,
+    response_type: 'in_channel',
+    text: action_text
+  }
+  return ContentService.createTextOutput(JSON.stringify(replyMessage)).setMimeType(
+    ContentService.MimeType.JSON
+  )
 }

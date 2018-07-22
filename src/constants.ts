@@ -3,6 +3,7 @@ enum Operations {
   MODIFY,
   CANCEL
 }
+const ACTION_TEXT: string[] = ['登録しました', '時間を変更しました', '諦めました']
 
 const DAYS: string[] = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 const DAYS_TO_NO: { [key: string]: number } = {
@@ -25,6 +26,7 @@ const TIMES_DEFAULT: string = '11:30,12:00,12:30,13:00'
 const WORK_DAYS_OF_WEEK_DEFAULT: string = 'MON,TUE,WED,THU,FRI' // MON,TUE,WED,THU,FRI,SAT,SUN
 
 export {
+  ACTION_TEXT,
   DAYS,
   DAYS_TO_NO,
   FOLDER_NAME,
