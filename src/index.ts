@@ -81,15 +81,18 @@ global.draw = (): void => {
 
   let message = '今日のランチは\n'
 
+  let team_no = 0
+
   ConfigService.get_times().forEach(function(val: string) {
     var teams = result[val]
     if (teams && teams.length > 0) {
       message += ` ----- ${val}\n`
-      teams.forEach(function(team: SlackUser[], i: number) {
+      teams.forEach(function(team: SlackUser[]) {
+        team_no += 1
         if (team.length > 1 && lottery(lottery_ratio)) message += '当たり！'
-        message += ` チーム ${i + 1}: `
+        message += ` チーム ${team_no}: `
         team.forEach(function(person) {
-          message += `<@${person[0]}> ,`
+          message += `<@${person.userId}> ,`
         })
         message += '\n'
       })
