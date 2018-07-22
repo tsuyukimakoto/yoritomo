@@ -2,6 +2,10 @@ import PropertyService = GoogleAppsScript.Properties.PropertiesService
 
 import {
   DAYS,
+  LOTTERRY_RATIO_DEFAULT,
+  MAX_MEMBERS_DEFAULT,
+  PROPERTY_LOTTERY_RATIO,
+  PROPERTY_MAX_MEMBERS,
   PROPERTY_WEBFOOK_URL,
   PROPERTY_WORK_DAYS_OF_WEEK,
   WORK_DAYS_OF_WEEK_DEFAULT,
@@ -27,6 +31,26 @@ export class ConfigService {
       properties.setProperty(PROPERTY_TIMES, TIMES_DEFAULT)
       console.info(
         `SET SCRIPT PROPERTY(${PROPERTY_TIMES}:${TIMES_DEFAULT}), this is default and can change.`
+      )
+    }
+  }
+  static set_default_max_members() {
+    let properties = PropertiesService.getScriptProperties()
+    let max_members = properties.getProperty(PROPERTY_MAX_MEMBERS)
+    if (max_members == null) {
+      properties.setProperty(PROPERTY_MAX_MEMBERS, MAX_MEMBERS_DEFAULT)
+      console.info(
+        `SET SCRIPT PROPERTY(${PROPERTY_MAX_MEMBERS}:${MAX_MEMBERS_DEFAULT}), this is default and can change.`
+      )
+    }
+  }
+  static set_default_lottery_ratio() {
+    let properties = PropertiesService.getScriptProperties()
+    let lottery_ratio = properties.getProperty(PROPERTY_LOTTERY_RATIO)
+    if (lottery_ratio == null) {
+      properties.setProperty(PROPERTY_LOTTERY_RATIO, LOTTERRY_RATIO_DEFAULT)
+      console.info(
+        `SET SCRIPT PROPERTY(${PROPERTY_LOTTERY_RATIO}:${LOTTERRY_RATIO_DEFAULT}), this is default and can change.`
       )
     }
   }
@@ -61,5 +85,13 @@ export class ConfigService {
         return item.trim()
       })
     return times
+  }
+  static get_max_members(): number {
+    let properties = PropertiesService.getScriptProperties()
+    return Number(properties.getProperty(PROPERTY_MAX_MEMBERS))
+  }
+  static get_lottery_ratio(): number {
+    let properties = PropertiesService.getScriptProperties()
+    return Number(properties.getProperty(PROPERTY_LOTTERY_RATIO))
   }
 }

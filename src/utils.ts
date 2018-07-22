@@ -1,3 +1,5 @@
+import { ShiftTable, ShiftTables, SlackUser } from './models'
+
 function monday_of_week(today: Date): Date {
   let firstday: Date = today
   let day_of_week: number = today.getDay()
@@ -32,4 +34,27 @@ function generate_filename(today: Date): string {
   return `${today.getFullYear()}_${today.getMonth() + 1}_${today.getDate()}`
 }
 
-export { generate_filename, generate_sheetname, generate_sheetnames, monday_of_week }
+function divide(data: SlackUser[], max: number): SlackUser[][] {
+  let teams: SlackUser[][] = []
+  let team_count = Math.ceil(data.length / max)
+  for (let i = 0; i < team_count; i++) {
+    teams.push([])
+  }
+
+  let j = 0
+  for (let i = data.length - 1; i >= 0; i--) {
+    teams[j % team_count].push(data.splice(Math.floor(Math.random() * data.length), 1)[0])
+    j++
+  }
+  return teams
+}
+
+function separateData(data: ShiftTable, max: number) {
+  let result: ShiftTables = {}
+  Object.keys(data).forEach(function(val: string) {
+    result[val] = divide(data[val], max)
+  })
+  return result
+}
+
+export { generate_filename, generate_sheetname, generate_sheetnames, monday_of_week, separateData }

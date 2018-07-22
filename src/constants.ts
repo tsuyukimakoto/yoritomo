@@ -18,10 +18,14 @@ const DAYS_TO_NO: { [key: string]: number } = {
 
 const PROPERTY_FILE_ID: string = 'file_id'
 const PROPERTY_FOLDER_ID: string = 'folder_id'
+const PROPERTY_LOTTERY_RATIO: string = 'lottery_ratio'
+const PROPERTY_MAX_MEMBERS: string = 'max_members'
 const PROPERTY_TIMES: string = 'times'
 const PROPERTY_WEBFOOK_URL: string = 'webhook_url'
 const PROPERTY_WORK_DAYS_OF_WEEK: string = 'work_days_of_week'
 const FOLDER_NAME: string = 'YORITOMO-SAN-DATA'
+const LOTTERRY_RATIO_DEFAULT: string = '100'
+const MAX_MEMBERS_DEFAULT: string = '4'
 const TIMES_DEFAULT: string = '11:30,12:00,12:30,13:00'
 const WORK_DAYS_OF_WEEK_DEFAULT: string = 'MON,TUE,WED,THU,FRI' // MON,TUE,WED,THU,FRI,SAT,SUN
 
@@ -30,9 +34,13 @@ export {
   DAYS,
   DAYS_TO_NO,
   FOLDER_NAME,
+  LOTTERRY_RATIO_DEFAULT,
+  MAX_MEMBERS_DEFAULT,
   Operations,
   PROPERTY_FILE_ID,
   PROPERTY_FOLDER_ID,
+  PROPERTY_LOTTERY_RATIO,
+  PROPERTY_MAX_MEMBERS,
   PROPERTY_TIMES,
   PROPERTY_WEBFOOK_URL,
   PROPERTY_WORK_DAYS_OF_WEEK,

@@ -4,7 +4,8 @@ import TextOutput = GoogleAppsScript.Content.TextOutput
 import { ConfigService } from './config.service'
 import { StorageService } from './storage.service'
 import { ACTION_TEXT } from './constants'
-import { Action, PostEvent } from './models'
+import { Action, SlackUser, PostEvent } from './models'
+import { separateData } from './utils'
 
 declare var global: any
 
@@ -69,4 +70,38 @@ global.doPost = (e: PostEvent): TextOutput => {
   return ContentService.createTextOutput(JSON.stringify(replyMessage)).setMimeType(
     ContentService.MimeType.JSON
   )
+}
+
+global.draw = (): void => {
+  let today = new Date()
+  let data = StorageService.getData(today)
+  let max_members = ConfigService.get_max_members()
+  let lottery_ratio = ConfigService.get_lottery_ratio()
+  let result = separateData(data, max_members)
+
+  let message = '今日のランチは\n'
+
+  ConfigService.get_times().forEach(function(val: string) {
+    var teams = result[val]
+    if (teams && teams.length > 0) {
+      message += ` ----- ${val}\n`
+      teams.forEach(function(team: SlackUser[], i: number) {
+        if (team.length > 1 && lottery(lottery_ratio)) message += '当たり！'
+        message += ` チーム ${i + 1}: `
+        team.forEach(function(person) {
+          message += `<@${person[0]}> ,`
+        })
+        message += '\n'
+      })
+      message += '\n'
+    }
+  })
+  send_message({ text: message })
+}
+
+function lottery(ratio: number): boolean {
+  if (ratio > 0) {
+    return 1 == Math.ceil(Math.random() * ratio)
+  }
+  return false
 }
