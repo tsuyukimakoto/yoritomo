@@ -30,6 +30,8 @@ export class StorageService {
       ConfigService.set_default_work_days()
       ConfigService.set_default_times()
       ConfigService.set_default_max_members()
+      ConfigService.set_default_question_time()
+      ConfigService.set_default_lottery_ratio()
     } else {
       folder = DriveApp.getFolderById(folder_id)
     }

@@ -1,3 +1,4 @@
+import ScriptApp = GoogleAppsScript.Script.ScriptApp
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions
 import TextOutput = GoogleAppsScript.Content.TextOutput
 
@@ -27,7 +28,8 @@ function send_message(data: object) {
   }
 }
 
-global.send_question = (): void => {
+global.send_question = (event): void => {
+  ConfigService.remove_timer(event.triggerUid)
   let today = new Date()
   StorageService.prepareStorage(today)
   let actions: Action[] = []
@@ -72,21 +74,27 @@ global.doPost = (e: PostEvent): TextOutput => {
   )
 }
 
-global.draw = (): void => {
+global.draw = (event): void => {
   let today = new Date()
   let data = StorageService.getData(today)
   let max_members = ConfigService.get_max_members()
   let lottery_ratio = ConfigService.get_lottery_ratio()
   let result = separateData(data, max_members)
 
+  let argument_time = ConfigService.get_trigger_argument(event.triggerUid)
+  ConfigService.remove_timer(event.triggerUid)
+
   let message = '今日のランチは\n'
 
   let team_no = 0
 
-  ConfigService.get_times().forEach(function(val: string) {
-    var teams = result[val]
+  ConfigService.get_times().forEach(function(time: string) {
+    if (argument_time !== time) {
+      return
+    }
+    var teams = result[time]
     if (teams && teams.length > 0) {
-      message += ` ----- ${val}\n`
+      message += ` ----- ${time}\n`
       teams.forEach(function(team: SlackUser[]) {
         team_no += 1
         if (team.length > 1 && lottery(lottery_ratio)) message += '当たり！'
@@ -100,6 +108,10 @@ global.draw = (): void => {
     }
   })
   send_message({ text: message })
+}
+
+global.set_timer = (): void => {
+  ConfigService.set_timer()
 }
 
 function lottery(ratio: number): boolean {

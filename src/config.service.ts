@@ -6,12 +6,15 @@ import {
   MAX_MEMBERS_DEFAULT,
   PROPERTY_LOTTERY_RATIO,
   PROPERTY_MAX_MEMBERS,
+  PROPERTY_QUESTION_TIME,
   PROPERTY_WEBFOOK_URL,
   PROPERTY_WORK_DAYS_OF_WEEK,
   WORK_DAYS_OF_WEEK_DEFAULT,
   PROPERTY_TIMES,
+  QUESTION_TIME_DEFAULT,
   TIMES_DEFAULT
 } from './constants'
+import { time_to_hourminutes } from './utils'
 
 export class ConfigService {
   static set_default_work_days() {
@@ -44,6 +47,16 @@ export class ConfigService {
       )
     }
   }
+  static set_default_question_time() {
+    let properties = PropertiesService.getScriptProperties()
+    let question_time = properties.getProperty(PROPERTY_QUESTION_TIME)
+    if (question_time == null) {
+      properties.setProperty(PROPERTY_QUESTION_TIME, QUESTION_TIME_DEFAULT)
+      console.info(
+        `SET SCRIPT PROPERTY(${PROPERTY_QUESTION_TIME}:${QUESTION_TIME_DEFAULT}), this is default and can change.`
+      )
+    }
+  }
   static set_default_lottery_ratio() {
     let properties = PropertiesService.getScriptProperties()
     let lottery_ratio = properties.getProperty(PROPERTY_LOTTERY_RATIO)
@@ -65,6 +78,50 @@ export class ConfigService {
     }
     if (workdays.indexOf(DAYS[today.getDay()]) >= 0) return true
     return false
+  }
+  static get_trigger_argument(trigger_unique_id): string {
+    let properties = PropertiesService.getScriptProperties()
+    return properties.getProperty(`trigger_${trigger_unique_id}`)
+  }
+  static set_timer_send_question(properties: GoogleAppsScript.Properties.Properties): void {
+    let hourminutes = time_to_hourminutes(properties.getProperty(PROPERTY_QUESTION_TIME))
+    let timer = new Date()
+    timer.setHours(hourminutes[0])
+    timer.setMinutes(hourminutes[1])
+    ScriptApp.newTrigger('send_question')
+      .timeBased()
+      .at(timer)
+      .create()
+  }
+  static set_timer_draw(properties: GoogleAppsScript.Properties.Properties): void {
+    ConfigService.get_times().forEach(function(time: string) {
+      let hourminutes = time_to_hourminutes(time)
+      let timer = new Date()
+      timer.setHours(hourminutes[0])
+      timer.setMinutes(hourminutes[1] - 10) // TODO Magic Number
+      let trigger_unique_id = ScriptApp.newTrigger('draw')
+        .timeBased()
+        .at(timer)
+        .create()
+        .getUniqueId()
+      properties.setProperty(`trigger_${trigger_unique_id}`, time)
+    })
+  }
+  static set_timer(): void {
+    let properties = PropertiesService.getScriptProperties()
+    // set time based trigger send_question
+    ConfigService.set_timer_send_question(properties)
+    // set time based trigger draw each time
+    ConfigService.set_timer_draw(properties)
+  }
+  static remove_timer(trigger_unique_id: string): void {
+    let properties = PropertiesService.getScriptProperties()
+    ScriptApp.getProjectTriggers().forEach(function(trigger: GoogleAppsScript.Script.Trigger) {
+      if (trigger.getUniqueId() === trigger_unique_id) {
+        ScriptApp.deleteTrigger(trigger)
+        properties.deleteProperty(`trigger_${trigger_unique_id}`)
+      }
+    })
   }
   static get_message_post_url(): string {
     let properties = PropertiesService.getScriptProperties()

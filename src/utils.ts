@@ -57,4 +57,17 @@ function separateData(data: ShiftTable, max: number) {
   return result
 }
 
-export { generate_filename, generate_sheetname, generate_sheetnames, monday_of_week, separateData }
+function time_to_hourminutes(time: string): number[] {
+  return time.split(':').map(function(num: string) {
+    return Number(num.trim())
+  })
+}
+
+export {
+  generate_filename,
+  generate_sheetname,
+  generate_sheetnames,
+  monday_of_week,
+  separateData,
+  time_to_hourminutes
+}
