@@ -105,13 +105,16 @@ global.draw = (event): void => {
         message += '\n'
       })
       message += '\n'
+      send_message({ text: message })
     }
   })
-  send_message({ text: message })
 }
 
 global.set_timer = (): void => {
   ConfigService.set_timer()
+}
+global.init = (): void => {
+  ConfigService.initialize()
 }
 
 function lottery(ratio: number): boolean {

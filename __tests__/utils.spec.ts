@@ -1,4 +1,5 @@
-import { monday_of_week, generate_sheetnames } from '../src/utils'
+import { monday_of_week, generate_sheetnames, separateData } from '../src/utils'
+import { ShiftTable, SlackUser } from '../src/models'
 
 describe("monday_of_week", () => {  
   it("same year, same month, monday", function () {  
@@ -55,5 +56,55 @@ describe("generate_sheetnames", () => {
     expect(sheetnames[4]).toBe('20180713')
     expect(sheetnames[5]).toBe('20180714')
     expect(sheetnames[6]).toBe('20180715')
+  })
+})
+
+describe("divide", () => {  
+  it("four to 4", function () {
+    let data:ShiftTable = {}
+    let slackusers = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two'), new SlackUser('3', 'three'), new SlackUser('4', 'four')
+    ]
+    data['test'] = slackusers
+    let result = separateData(data, 4)['test']
+    expect(result.length).toBe(1)
+    expect(result[0].length).toBe(4)
+  })
+  it("five to 3 and 2", function () {
+    let data:ShiftTable = {}
+    let slackusers = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two'), new SlackUser('3', 'three'),
+      new SlackUser('4', 'four'), new SlackUser('5', 'five')
+    ]
+    data['test'] = slackusers
+    let result = separateData(data, 4)['test']
+    expect(result.length).toBe(2)
+    expect(result[0].length).toBe(3)
+    expect(result[1].length).toBe(2)
+  })
+  it("six to 3 and 3", function () {
+    let data:ShiftTable = {}
+    let slackusers = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two'), new SlackUser('3', 'three'),
+      new SlackUser('4', 'four'), new SlackUser('5', 'five'), new SlackUser('6', 'six')
+    ]
+    data['test'] = slackusers
+    let result = separateData(data, 4)['test']
+    expect(result.length).toBe(2)
+    expect(result[0].length).toBe(3)
+    expect(result[1].length).toBe(3)
+  })
+  it("eight to 4 and 4", function () {
+    let data:ShiftTable = {}
+    let slackusers = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two'), new SlackUser('3', 'three'),
+      new SlackUser('4', 'four'), new SlackUser('5', 'five'), new SlackUser('6', 'six'),
+      new SlackUser('7', 'seven'), new SlackUser('8', 'eight')
+    ]
+    data['test'] = slackusers
+    let result = separateData(data, 4)['test']
+    expect(result.length).toBe(2)
+    expect(result[0].length).toBe(4)
+    expect(result[1].length).toBe(4)
   })
 })

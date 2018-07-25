@@ -27,11 +27,7 @@ export class StorageService {
       properties.setProperty(PROPERTY_FOLDER_ID, folder.getId())
       console.info(`CREATE FOLDER AND SET SCRIPT PROPERTY(${PROPERTY_FOLDER_ID}:${folder.getId()})`)
 
-      ConfigService.set_default_work_days()
-      ConfigService.set_default_times()
-      ConfigService.set_default_max_members()
-      ConfigService.set_default_question_time()
-      ConfigService.set_default_lottery_ratio()
+      ConfigService.initialize()
     } else {
       folder = DriveApp.getFolderById(folder_id)
     }

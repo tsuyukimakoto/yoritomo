@@ -17,6 +17,14 @@ import {
 import { time_to_hourminutes } from './utils'
 
 export class ConfigService {
+  static initialize() {
+    let properties = PropertiesService.getScriptProperties()
+    ConfigService.set_default_work_days()
+    ConfigService.set_default_times()
+    ConfigService.set_default_max_members()
+    ConfigService.set_default_question_time()
+    ConfigService.set_default_lottery_ratio()
+  }
   static set_default_work_days() {
     let properties = PropertiesService.getScriptProperties()
     let workdays = properties.getProperty(PROPERTY_WORK_DAYS_OF_WEEK)
@@ -119,9 +127,9 @@ export class ConfigService {
     ScriptApp.getProjectTriggers().forEach(function(trigger: GoogleAppsScript.Script.Trigger) {
       if (trigger.getUniqueId() === trigger_unique_id) {
         ScriptApp.deleteTrigger(trigger)
-        properties.deleteProperty(`trigger_${trigger_unique_id}`)
       }
     })
+    properties.deleteProperty(`trigger_${trigger_unique_id}`)
   }
   static get_message_post_url(): string {
     let properties = PropertiesService.getScriptProperties()
