@@ -1,6 +1,6 @@
 {
-  "name": "gas-clasp-starter",
-  "version": "1.2.0",
+  "name": "yoritomo",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/howdy39/gas-clasp-starter.git"
+    "url": "git+https://github.com/tsuyukimakoto/yoritomo.git"
   },
   "keywords": [
     "gas",
     "google-apps-script",
     "clasp"
   ],
-  "author": "howdy39",
+  "author": "tsuyukimakoto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/howdy39/gas-clasp-starter/issues"
+    "url": "https://github.com/tsuyukimakoto/yoritomo/issues"
   },
-  "homepage": "https://github.com/howdy39/gas-clasp-starter#readme",
+  "homepage": "https://github.com/tsuyukimakoto/yoritomo#readme",
   "devDependencies": {
     "@types/google-apps-script": "^0.0.26",
     "@types/jest": "^22.2.3",
