@@ -1,5 +1,7 @@
 # yoritomo san
 
+[![Build Status](https://travis-ci.org/uncovertruth/yoritomo.svg?branch=master)](https://travis-ci.org/uncovertruth/yoritomo)
+
 ランチのチーム分けを行うGoogle Apps Scriptです。名前は同じくGASとSlackで勤怠管理をおこなえる [みやもとさん](https://github.com/masuidrive/miyamoto) リスペクトです。
 
 みやもと → 宮本武蔵 → 佐々木小次郎 → ささき…負けちゃうじゃん。 → 源頼朝 → よりともさん
