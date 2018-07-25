@@ -44,20 +44,22 @@ Google Apps Script のプロジェクトを作れるようになったら新規�
 
 - Initで追加される項目は以下です。必要に応じて値を変更してください。
 
-|項目|値（デフォルト）|説明|
-|work_days_of_week, MON,TUE,WED,THU,FRI|カンマ区切りで曜日を区切ります。MON,TUE,WED,THU,FRI,SAT,SUNが使えます|
-|question_time|9:00|質問をSlackに投げる時間を設定します。フォーマットはデフォルト値を参考にしてください|
-|times|11:30,12:00,12:30,13:00|ランチに出発する時間の候補をカンマ区切りで設定します。時間の10分前になると抽選が行われてチーム分けがSlackに投げられます|
-|max_members|4|1チームの最大人数です|
-|lottery_ratio|100|1/nの確率でチームにあたりが出ます。あたりを出したくない場合には0を設定してください|
+    |項目|値（デフォルト）|説明|
+    |:--|:--|:--|
+    |work_days_of_week, MON,TUE,WED,THU,FRI|カンマ区切りで曜日を区切ります。MON,TUE,WED,THU,FRI,SAT,SUNが使えます|
+    |question_time|9:00|質問をSlackに投げる時間を設定します。フォーマットはデフォルト値を参考にしてください|
+    |times|11:30,12:00,12:30,13:00|ランチに出発する時間の候補をカンマ区切りで設定します。時間の10分前になると抽選が行われてチーム分けがSlackに投げられます|
+    |max_members|4|1チームの最大人数です|
+    |lottery_ratio|100|1/nの確率でチームにあたりが出ます。あたりを出したくない場合には0を設定してください|
 
 - その他の設定項目
 
-|項目|説明|
-|file_id|現在使っているSpreadSheetのファイルIDです|
-|folder_id|SpreadSheetを保存するフォルダーのIDです|
-|webhook_url|SlackのIncomming Webhook URLです。後で作成するSlack appの設定を手動で設定します|
-|trigger_xxxxxx|プログラム制御用の項目です。当日中に自動で消えます|
+    |項目|説明|
+    |:--|:--|
+    |file_id|現在使っているSpreadSheetのファイルIDです|
+    |folder_id|SpreadSheetを保存するフォルダーのIDです|
+    |webhook_url|SlackのIncomming Webhook URLです。後で作成するSlack appの設定を手動で設定します|
+    |trigger_xxxxxx|プログラム制御用の項目です。当日中に自動で消えます|
 
 ## Interactive Message用のSlack Appを作る
 
@@ -66,9 +68,10 @@ SlackのInteractive Messagesを使って外部とやりとりをするには、S
 1. [Slack appの管理ページ](https://api.slack.com/slack-apps) をSlackのアカウントでログイン済みのブラウザで開きます
 1. Create a Slack app をクリックし、以下を入力して `Create App` します。利用規約に従える場合のみですよ
 
-|項目|設定|
-|App Name|後で変えられるので適当に「みんなランチに行きたいぞ」とかでも|
-|Development Slack Workspace|ランチ分割で使いたいWorkspaceを選択します|
+    |項目|設定|
+    |:-|:-|
+    |App Name|後で変えられるので適当に「みんなランチに行きたいぞ」とかでも|
+    |Development Slack Workspace|ランチ分割で使いたいWorkspaceを選択します|
 
 1. 設定画面に遷移するので、いくつか設定をします
   - 左のメニューから Incoming Webhooks をクリックして設定を On にします
