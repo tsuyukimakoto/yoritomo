@@ -1,6 +1,6 @@
 # yoritomo san
 
-[![Build Status](https://travis-ci.org/tsuyukimakoto/yoritomo.svg?branch=master)](https://travis-ci.org/tsuyukimakoto/yoritomo)
+[![Build Status](https://travis-ci.com/tsuyukimakoto/yoritomo.svg?branch=master)](https://travis-ci.com/tsuyukimakoto/yoritomo)
 
 
 ランチのチーム分けを行うGoogle Apps Scriptです。名前は同じくGASとSlackで勤怠管理をおこなえる [みやもとさん](https://github.com/masuidrive/miyamoto) リスペクトです。
