@@ -60,7 +60,7 @@ describe("generate_filename", () => {
   it("2018_7_30", function () {
     expect(generate_filename(new Date(2018, 6, 30))).toBe('2018_7_30')
     expect(generate_filename(new Date(2018, 7, 1))).toBe('2018_7_30')
-  }
+  })
 })
 
 describe("generate_sheetnames", () => {  
