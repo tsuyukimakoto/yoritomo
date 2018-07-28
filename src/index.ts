@@ -10,6 +10,8 @@ import { separateData } from './utils'
 
 declare var global: any
 
+const CONFIRM_COMMAND: string = 'confirm'
+
 function send_message(data: object) {
   let payload = JSON.stringify(data)
   let params: URLFetchRequestOptions = {
@@ -38,12 +40,13 @@ global.send_question = (event): void => {
   times.forEach(function(val: string) {
     actions.push(new Action(val, val, 'button', "'" + val))
   })
+  actions.push(new Action(CONFIRM_COMMAND, '確認する', 'button', CONFIRM_COMMAND))
 
   let data = {
     attachments: [
       {
         actions: actions,
-        text: '何時に出ますか？', // TODO i18n
+        text: '何時に出ますか？（エラーが出たら確認を押してみてください）', // TODO i18n
         callback_id: 'yoritomo'
       }
     ]
@@ -57,13 +60,19 @@ global.send_question = (event): void => {
 
 global.doPost = (e: PostEvent): TextOutput => {
   let jsonData = JSON.parse(decodeURIComponent(e.parameter.payload))
-  let action = StorageService.putData(
-    new Date(),
-    jsonData.user.id,
-    jsonData.user.name,
-    jsonData.actions[0].value
-  )
-  let action_text = `<@${jsonData.user.id}>: ${jsonData.actions[0].value} (${ACTION_TEXT[action]})`
+  let action_text: string = ''
+  let val = String(jsonData.actions[0].value)
+  if (CONFIRM_COMMAND !== val) {
+    let action = StorageService.putData(new Date(), jsonData.user.id, jsonData.user.name, val)
+    action_text = `<@${jsonData.user.id}>: ${val} (${ACTION_TEXT[action]})`
+  } else {
+    let when = StorageService.confirmData(new Date(), jsonData.user.id)
+    if (when.trim().length > 0) {
+      action_text = `<@${jsonData.user.id}>: ${when} で登録済みです`
+    } else {
+      action_text = `<@${jsonData.user.id}>: 登録がありません。もう一度時間を押してください`
+    }
+  }
   let replyMessage = {
     replace_original: false,
     response_type: 'in_channel',

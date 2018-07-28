@@ -62,6 +62,22 @@ export class StorageService {
     }
     return false
   }
+  static confirmData(today: Date, id: string): string {
+    let spreadsheet = StorageService.getSpreadSheet(today)
+    let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
+    let max_row = sheet.getLastRow()
+    if (max_row == 0) return ''
+
+    let range = sheet.getRange(1, 1, max_row)
+    let ids = range.getValues()
+    for (var i = 0; i < ids.length; i++) {
+      let value = ids[i]
+      if (id == new String(value)) {
+        return String(sheet.getRange(i + 1, 3).getValue())
+      }
+    }
+    return ''
+  }
   static modifyData(sheet: Sheet, id: string, name: string, when: string): Operations {
     let max_row = sheet.getLastRow()
     if (max_row == 0) {

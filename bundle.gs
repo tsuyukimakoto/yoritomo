@@ -8,89 +8,89 @@ function set_timer() {
 }
 function init() {
 }/******/ (function(modules) { // webpackBootstrap
-/******/    // The module cache
-/******/    var installedModules = {};
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
 /******/
-/******/    // The require function
-/******/    function __webpack_require__(moduleId) {
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
 /******/
-/******/        // Check if module is in cache
-/******/        if(installedModules[moduleId]) {
-/******/            return installedModules[moduleId].exports;
-/******/        }
-/******/        // Create a new module (and put it into the cache)
-/******/        var module = installedModules[moduleId] = {
-/******/            i: moduleId,
-/******/            l: false,
-/******/            exports: {}
-/******/        };
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
 /******/
-/******/        // Execute the module function
-/******/        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
-/******/        // Flag the module as loaded
-/******/        module.l = true;
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
 /******/
-/******/        // Return the exports of the module
-/******/        return module.exports;
-/******/    }
-/******/
-/******/
-/******/    // expose the modules object (__webpack_modules__)
-/******/    __webpack_require__.m = modules;
-/******/
-/******/    // expose the module cache
-/******/    __webpack_require__.c = installedModules;
-/******/
-/******/    // define getter function for harmony exports
-/******/    __webpack_require__.d = function(exports, name, getter) {
-/******/        if(!__webpack_require__.o(exports, name)) {
-/******/            Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/        }
-/******/    };
-/******/
-/******/    // define __esModule on exports
-/******/    __webpack_require__.r = function(exports) {
-/******/        if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/            Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/        }
-/******/        Object.defineProperty(exports, '__esModule', { value: true });
-/******/    };
-/******/
-/******/    // create a fake namespace object
-/******/    // mode & 1: value is a module id, require it
-/******/    // mode & 2: merge all properties of value into the ns
-/******/    // mode & 4: return value when already ns object
-/******/    // mode & 8|1: behave like require
-/******/    __webpack_require__.t = function(value, mode) {
-/******/        if(mode & 1) value = __webpack_require__(value);
-/******/        if(mode & 8) return value;
-/******/        if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/        var ns = Object.create(null);
-/******/        __webpack_require__.r(ns);
-/******/        Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/        if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/        return ns;
-/******/    };
-/******/
-/******/    // getDefaultExport function for compatibility with non-harmony modules
-/******/    __webpack_require__.n = function(module) {
-/******/        var getter = module && module.__esModule ?
-/******/            function getDefault() { return module['default']; } :
-/******/            function getModuleExports() { return module; };
-/******/        __webpack_require__.d(getter, 'a', getter);
-/******/        return getter;
-/******/    };
-/******/
-/******/    // Object.prototype.hasOwnProperty.call
-/******/    __webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/    // __webpack_public_path__
-/******/    __webpack_require__.p = "";
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
 /******/
 /******/
-/******/    // Load entry module and return exports
-/******/    return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -106,15 +106,15 @@ var g;
 
 // This works in non-strict mode
 g = (function() {
-    return this;
+	return this;
 })();
 
 try {
-    // This works if eval is allowed (see CSP)
-    g = g || Function("return this")() || (1, eval)("this");
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
 } catch (e) {
-    // This works if the window reference is available
-    if (typeof window === "object") g = window;
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
 }
 
 // g can still be undefined, but nothing to do about it...
@@ -366,6 +366,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var CONFIRM_COMMAND = 'confirm';
 function send_message(data) {
     var payload = JSON.stringify(data);
     var params = {
@@ -393,11 +394,12 @@ global.send_question = function (event) {
     times.forEach(function (val) {
         actions.push(new _models__WEBPACK_IMPORTED_MODULE_3__["Action"](val, val, 'button', "'" + val));
     });
+    actions.push(new _models__WEBPACK_IMPORTED_MODULE_3__["Action"](CONFIRM_COMMAND, '確認する', 'button', CONFIRM_COMMAND));
     var data = {
         attachments: [
             {
                 actions: actions,
-                text: '何時に出ますか？',
+                text: '何時に出ますか？（エラーが出たら確認を押してみてください）',
                 callback_id: 'yoritomo'
             }
         ]
@@ -411,8 +413,21 @@ global.send_question = function (event) {
 };
 global.doPost = function (e) {
     var jsonData = JSON.parse(decodeURIComponent(e.parameter.payload));
-    var action = _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].putData(new Date(), jsonData.user.id, jsonData.user.name, jsonData.actions[0].value);
-    var action_text = "<@" + jsonData.user.id + ">: " + jsonData.actions[0].value + " (" + _constants__WEBPACK_IMPORTED_MODULE_2__["ACTION_TEXT"][action] + ")";
+    var action_text = '';
+    var val = String(jsonData.actions[0].value);
+    if (CONFIRM_COMMAND !== val) {
+        var action = _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].putData(new Date(), jsonData.user.id, jsonData.user.name, val);
+        action_text = "<@" + jsonData.user.id + ">: " + val + " (" + _constants__WEBPACK_IMPORTED_MODULE_2__["ACTION_TEXT"][action] + ")";
+    }
+    else {
+        var when = _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].confirmData(new Date(), jsonData.user.id);
+        if (when.trim().length > 0) {
+            action_text = "<@" + jsonData.user.id + ">: " + when + " \u3067\u767B\u9332\u6E08\u307F\u3067\u3059";
+        }
+        else {
+            action_text = "<@" + jsonData.user.id + ">: \u767B\u9332\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u3082\u3046\u4E00\u5EA6\u6642\u9593\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044";
+        }
+    }
     var replyMessage = {
         replace_original: false,
         response_type: 'in_channel',
@@ -576,6 +591,22 @@ var StorageService = /** @class */ (function () {
             return true;
         }
         return false;
+    };
+    StorageService.confirmData = function (today, id) {
+        var spreadsheet = StorageService.getSpreadSheet(today);
+        var sheet = spreadsheet.getSheetByName(Object(_utils__WEBPACK_IMPORTED_MODULE_3__["generate_sheetname"])(today));
+        var max_row = sheet.getLastRow();
+        if (max_row == 0)
+            return '';
+        var range = sheet.getRange(1, 1, max_row);
+        var ids = range.getValues();
+        for (var i = 0; i < ids.length; i++) {
+            var value = ids[i];
+            if (id == new String(value)) {
+                return String(sheet.getRange(i + 1, 3).getValue());
+            }
+        }
+        return '';
     };
     StorageService.modifyData = function (sheet, id, name, when) {
         var max_row = sheet.getLastRow();
