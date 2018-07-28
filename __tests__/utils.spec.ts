@@ -1,4 +1,5 @@
-import { monday_of_week, generate_sheetnames, separateData } from '../src/utils'
+import { WORK_DAYS_OF_WEEK_DEFAULT } from '../src/constants'
+import { date_to_day_of_the_week, generate_filename, monday_of_week, generate_sheetnames, separateData } from '../src/utils'
 import { ShiftTable, SlackUser } from '../src/models'
 
 describe("monday_of_week", () => {  
@@ -46,6 +47,22 @@ describe("monday_of_week", () => {
   })
 })
 
+describe("generate_filename", () => {
+  it("2018_7_23", function () {
+    expect(generate_filename(new Date(2018, 6, 23))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 24))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 25))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 26))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 27))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 28))).toBe('2018_7_23')
+    expect(generate_filename(new Date(2018, 6, 29))).toBe('2018_7_23')
+  })
+  it("2018_7_30", function () {
+    expect(generate_filename(new Date(2018, 6, 30))).toBe('2018_7_30')
+    expect(generate_filename(new Date(2018, 7, 1))).toBe('2018_7_30')
+  }
+})
+
 describe("generate_sheetnames", () => {  
   it("2018, 6, 9", function () {  
     let sheetnames = generate_sheetnames(new Date(2018, 6, 9))  // 2018/07/09 month starts zero
@@ -56,6 +73,44 @@ describe("generate_sheetnames", () => {
     expect(sheetnames[4]).toBe('20180713')
     expect(sheetnames[5]).toBe('20180714')
     expect(sheetnames[6]).toBe('20180715')
+  })
+})
+
+describe("date_to_day_of_the_week", () => {
+  it("monday", function () {
+    var today = new Date(2018, 6, 23)  // 2018/07/23 monday
+    expect(date_to_day_of_the_week(today)).toBe('MON')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(true)
+  })
+  it("tuesday", function () {
+    var today = new Date(2018, 6, 24)
+    expect(date_to_day_of_the_week(today)).toBe('TUE')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(true)
+  })
+  it("wednesday", function () {
+    var today = new Date(2018, 6, 25)
+    expect(date_to_day_of_the_week(today)).toBe('WED')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(true)
+  })
+  it("thursday", function () {
+    var today = new Date(2018, 6, 26)
+    expect(date_to_day_of_the_week(today)).toBe('THU')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(true)
+  })
+  it("friday", function () {
+    var today = new Date(2018, 6, 27)
+    expect(date_to_day_of_the_week(today)).toBe('FRI')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(true)
+  })
+  it("saturday", function () {
+    var today = new Date(2018, 6, 28)
+    expect(date_to_day_of_the_week(today)).toBe('SAT')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(false)
+  })
+  it("sunday", function () {
+    var today = new Date(2018, 6, 29)
+    expect(date_to_day_of_the_week(today)).toBe('SUN')
+    expect(WORK_DAYS_OF_WEEK_DEFAULT.indexOf(date_to_day_of_the_week(today)) >= 0).toBe(false)
   })
 })
 

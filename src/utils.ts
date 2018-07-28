@@ -1,3 +1,4 @@
+import { DAYS } from './constants'
 import { ShiftTable, ShiftTables, SlackUser } from './models'
 
 function monday_of_week(today: Date): Date {
@@ -31,7 +32,8 @@ function generate_sheetnames(today: Date): string[] {
 }
 
 function generate_filename(today: Date): string {
-  return `${today.getFullYear()}_${today.getMonth() + 1}_${today.getDate()}`
+  let monday = monday_of_week(today)
+  return `${monday.getFullYear()}_${monday.getMonth() + 1}_${monday.getDate()}`
 }
 
 function divide(data: SlackUser[], max: number): SlackUser[][] {
@@ -57,6 +59,10 @@ function separateData(data: ShiftTable, max: number) {
   return result
 }
 
+function date_to_day_of_the_week(today: Date): string {
+  return DAYS[today.getDay()]
+}
+
 function time_to_hourminutes(time: string): number[] {
   return time.split(':').map(function(num: string) {
     return Number(num.trim())
@@ -64,6 +70,7 @@ function time_to_hourminutes(time: string): number[] {
 }
 
 export {
+  date_to_day_of_the_week,
   generate_filename,
   generate_sheetname,
   generate_sheetnames,

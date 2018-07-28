@@ -14,7 +14,7 @@ import {
   QUESTION_TIME_DEFAULT,
   TIMES_DEFAULT
 } from './constants'
-import { time_to_hourminutes } from './utils'
+import { date_to_day_of_the_week, time_to_hourminutes } from './utils'
 
 export class ConfigService {
   static initialize() {
@@ -84,7 +84,13 @@ export class ConfigService {
       )
       return false
     }
-    if (workdays.indexOf(DAYS[today.getDay()]) >= 0) return true
+    let day_of_the_week = date_to_day_of_the_week(today)
+    let workday_index = workdays.indexOf(day_of_the_week)
+    if (workday_index >= 0) {
+      console.info(`day of week: ${day_of_the_week} is weekday (index: ${workday_index})`)
+      return true
+    }
+    console.info(`day of week: ${day_of_the_week} is not weekday (index: ${workday_index})`)
     return false
   }
   static get_trigger_argument(trigger_unique_id): string {
