@@ -31,8 +31,12 @@ function send_message(data: object) {
 }
 
 global.send_question = (event): void => {
-  ConfigService.remove_timer(event.triggerUid)
+  console.info('send_question')
+  if (event) {
+    ConfigService.remove_timer(event.triggerUid)
+  }
   let today = new Date()
+  console.info(today)
   StorageService.prepareStorage(today)
   let actions: Action[] = []
   let times = ConfigService.get_times()

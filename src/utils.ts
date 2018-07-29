@@ -60,6 +60,7 @@ function separateData(data: ShiftTable, max: number) {
 }
 
 function date_to_day_of_the_week(today: Date): string {
+  console.log(`date_to_day_of_the_week: today.getDay() -> ${today.getDay()}: today -> ${today}`)
   return DAYS[today.getDay()]
 }
 
