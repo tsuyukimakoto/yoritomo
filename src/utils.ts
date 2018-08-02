@@ -2,7 +2,7 @@ import { DAYS } from './constants'
 import { ShiftTable, ShiftTables, SlackUser } from './models'
 
 function monday_of_week(today: Date): Date {
-  let firstday: Date = today
+  let firstday: Date = new Date(today.getTime())
   let day_of_week: number = today.getDay()
   var diff: number
 
