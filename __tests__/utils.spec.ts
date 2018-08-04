@@ -166,7 +166,7 @@ describe("divide", () => {
 
 
 describe("lottery", () => {
-  let TEST_BUFFER = 2
+  let TEST_BUFFER = 3
   it("ratio is hundred.", function () {
     let ratio = 100
     let team:SlackUser[] = [
