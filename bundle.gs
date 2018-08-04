@@ -764,7 +764,7 @@ function lottery(team, ratio) {
     }
     var result = Math.random() * ratio;
     console.log("lottery result: " + result);
-    if (1 == Math.ceil(result)) {
+    if (ratio == Math.ceil(result)) {
         console.log("bingo! " + Math.ceil(result));
         return true;
     }
