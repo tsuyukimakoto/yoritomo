@@ -8,89 +8,89 @@ function set_timer() {
 }
 function init() {
 }/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/    // The module cache
+/******/    var installedModules = {};
 /******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+/******/    // The require function
+/******/    function __webpack_require__(moduleId) {
 /******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
+/******/        // Check if module is in cache
+/******/        if(installedModules[moduleId]) {
+/******/            return installedModules[moduleId].exports;
+/******/        }
+/******/        // Create a new module (and put it into the cache)
+/******/        var module = installedModules[moduleId] = {
+/******/            i: moduleId,
+/******/            l: false,
+/******/            exports: {}
+/******/        };
 /******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/        // Execute the module function
+/******/        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
+/******/        // Flag the module as loaded
+/******/        module.l = true;
 /******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/        // Return the exports of the module
+/******/        return module.exports;
+/******/    }
 /******/
 /******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/    // expose the modules object (__webpack_modules__)
+/******/    __webpack_require__.m = modules;
+/******/
+/******/    // expose the module cache
+/******/    __webpack_require__.c = installedModules;
+/******/
+/******/    // define getter function for harmony exports
+/******/    __webpack_require__.d = function(exports, name, getter) {
+/******/        if(!__webpack_require__.o(exports, name)) {
+/******/            Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/        }
+/******/    };
+/******/
+/******/    // define __esModule on exports
+/******/    __webpack_require__.r = function(exports) {
+/******/        if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/            Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/        }
+/******/        Object.defineProperty(exports, '__esModule', { value: true });
+/******/    };
+/******/
+/******/    // create a fake namespace object
+/******/    // mode & 1: value is a module id, require it
+/******/    // mode & 2: merge all properties of value into the ns
+/******/    // mode & 4: return value when already ns object
+/******/    // mode & 8|1: behave like require
+/******/    __webpack_require__.t = function(value, mode) {
+/******/        if(mode & 1) value = __webpack_require__(value);
+/******/        if(mode & 8) return value;
+/******/        if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/        var ns = Object.create(null);
+/******/        __webpack_require__.r(ns);
+/******/        Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/        if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/        return ns;
+/******/    };
+/******/
+/******/    // getDefaultExport function for compatibility with non-harmony modules
+/******/    __webpack_require__.n = function(module) {
+/******/        var getter = module && module.__esModule ?
+/******/            function getDefault() { return module['default']; } :
+/******/            function getModuleExports() { return module; };
+/******/        __webpack_require__.d(getter, 'a', getter);
+/******/        return getter;
+/******/    };
+/******/
+/******/    // Object.prototype.hasOwnProperty.call
+/******/    __webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/    // __webpack_public_path__
+/******/    __webpack_require__.p = "";
+/******/
+/******/
+/******/    // Load entry module and return exports
+/******/    return __webpack_require__(__webpack_require__.s = "./src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -106,15 +106,15 @@ var g;
 
 // This works in non-strict mode
 g = (function() {
-	return this;
+    return this;
 })();
 
 try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
+    // This works if eval is allowed (see CSP)
+    g = g || Function("return this")() || (1, eval)("this");
 } catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
+    // This works if the window reference is available
+    if (typeof window === "object") g = window;
 }
 
 // g can still be undefined, but nothing to do about it...
@@ -386,8 +386,12 @@ function send_message(data) {
     }
 }
 global.send_question = function (event) {
-    _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].remove_timer(event.triggerUid);
+    console.info('send_question');
+    if (event) {
+        _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].remove_timer(event.triggerUid);
+    }
     var today = new Date();
+    console.info(today);
     _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].prepareStorage(today);
     var actions = [];
     var times = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_times();
@@ -454,8 +458,9 @@ global.draw = function (event) {
             message += " ----- " + time + "\n";
             teams.forEach(function (team) {
                 team_no += 1;
-                if (team.length > 1 && lottery(lottery_ratio))
+                if (Object(_utils__WEBPACK_IMPORTED_MODULE_4__["lottery"])(team, lottery_ratio)) {
                     message += '当たり！';
+                }
                 message += " \u30C1\u30FC\u30E0 " + team_no + ": ";
                 team.forEach(function (person) {
                     message += "<@" + person.userId + "> ,";
@@ -473,12 +478,6 @@ global.set_timer = function () {
 global.init = function () {
     _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].initialize();
 };
-function lottery(ratio) {
-    if (ratio > 0) {
-        return 1 == Math.ceil(Math.random() * ratio);
-    }
-    return false;
-}
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
@@ -678,7 +677,7 @@ var StorageService = /** @class */ (function () {
 /*!**********************!*\
   !*** ./src/utils.ts ***!
   \**********************/
-/*! exports provided: date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, monday_of_week, separateData, time_to_hourminutes */
+/*! exports provided: date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, lottery, monday_of_week, separateData, time_to_hourminutes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -687,13 +686,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_filename", function() { return generate_filename; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_sheetname", function() { return generate_sheetname; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_sheetnames", function() { return generate_sheetnames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lottery", function() { return lottery; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monday_of_week", function() { return monday_of_week; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "separateData", function() { return separateData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "time_to_hourminutes", function() { return time_to_hourminutes; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/constants.ts");
 
 function monday_of_week(today) {
-    var firstday = today;
+    var firstday = new Date(today.getTime());
     var day_of_week = today.getDay();
     var diff;
     if (day_of_week == 0)
@@ -744,12 +744,31 @@ function separateData(data, max) {
     return result;
 }
 function date_to_day_of_the_week(today) {
+    console.log("date_to_day_of_the_week: today.getDay() -> " + today.getDay() + ": today -> " + today);
     return _constants__WEBPACK_IMPORTED_MODULE_0__["DAYS"][today.getDay()];
 }
 function time_to_hourminutes(time) {
     return time.split(':').map(function (num) {
         return Number(num.trim());
     });
+}
+function lottery(team, ratio) {
+    console.log("lottery: ratio is 1/" + ratio + " .");
+    if (!(team.length > 1)) {
+        console.log("alone team do not draw lottery, team.length: " + team.length + ".");
+        return false;
+    }
+    if (!(ratio > 0)) {
+        console.log("ratio is set to " + ratio + ".");
+        return false;
+    }
+    var result = Math.random() * ratio;
+    console.log("lottery result: " + result);
+    if (1 == Math.ceil(result)) {
+        console.log("bingo! " + Math.ceil(result));
+        return true;
+    }
+    return false;
 }
 
 

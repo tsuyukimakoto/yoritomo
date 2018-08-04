@@ -6,7 +6,7 @@ import { ConfigService } from './config.service'
 import { StorageService } from './storage.service'
 import { ACTION_TEXT } from './constants'
 import { Action, SlackUser, PostEvent } from './models'
-import { separateData } from './utils'
+import { lottery, separateData } from './utils'
 
 declare var global: any
 
@@ -110,7 +110,9 @@ global.draw = (event): void => {
       message += ` ----- ${time}\n`
       teams.forEach(function(team: SlackUser[]) {
         team_no += 1
-        if (team.length > 1 && lottery(lottery_ratio)) message += '当たり！'
+        if (lottery(team, lottery_ratio)) {
+          message += '当たり！'
+        }
         message += ` チーム ${team_no}: `
         team.forEach(function(person) {
           message += `<@${person.userId}> ,`
@@ -128,11 +130,4 @@ global.set_timer = (): void => {
 }
 global.init = (): void => {
   ConfigService.initialize()
-}
-
-function lottery(ratio: number): boolean {
-  if (ratio > 0) {
-    return 1 == Math.ceil(Math.random() * ratio)
-  }
-  return false
 }

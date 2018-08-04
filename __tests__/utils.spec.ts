@@ -1,5 +1,5 @@
 import { WORK_DAYS_OF_WEEK_DEFAULT } from '../src/constants'
-import { date_to_day_of_the_week, generate_filename, monday_of_week, generate_sheetnames, separateData } from '../src/utils'
+import { date_to_day_of_the_week, generate_filename, lottery, monday_of_week, generate_sheetnames, separateData } from '../src/utils'
 import { ShiftTable, SlackUser } from '../src/models'
 
 describe("monday_of_week", () => {  
@@ -161,5 +161,75 @@ describe("divide", () => {
     expect(result.length).toBe(2)
     expect(result[0].length).toBe(4)
     expect(result[1].length).toBe(4)
+  })
+})
+
+
+describe("lottery", () => {
+  let TEST_BUFFER = 2
+  it("ratio is hundred.", function () {
+    let ratio = 100
+    let team:SlackUser[] = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two')
+    ]
+    let teams:SlackUser[][] = []
+    for (var i = 0; i < ratio * TEST_BUFFER; i++) {
+      teams.push(team)
+    }
+    let partialLottery = (in_team:SlackUser[]):boolean => lottery(in_team, ratio);
+    let result = teams.some(partialLottery, teams)
+    expect(result).toBe(true)
+  })
+  it("ratio is ten.", function () {
+    let ratio = 10
+    let team:SlackUser[] = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two')
+    ]
+    let teams:SlackUser[][] = []
+    for (var i = 0; i < ratio * TEST_BUFFER; i++) {
+      teams.push(team)
+    }
+    let partialLottery = (in_team:SlackUser[]):boolean => lottery(in_team, ratio);
+    let result = teams.some(partialLottery, teams)
+    expect(result).toBe(true)
+  })
+  it("ratio is 3.", function () {
+    let ratio = 3
+    let team:SlackUser[] = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two')
+    ]
+    let teams:SlackUser[][] = []
+    for (var i = 0; i < ratio * TEST_BUFFER; i++) {
+      teams.push(team)
+    }
+    let partialLottery = (in_team:SlackUser[]):boolean => lottery(in_team, ratio);
+    let result = teams.some(partialLottery, teams)
+    expect(result).toBe(true)
+  })
+  it("ratio is 0.", function () {
+    let ratio = 0
+    let team:SlackUser[] = [
+      new SlackUser('1', 'one'), new SlackUser('2', 'two')
+    ]
+    let teams:SlackUser[][] = []
+    for (var i = 0; i < 50; i++) {
+      teams.push(team)
+    }
+    let partialLottery = (in_team:SlackUser[]):boolean => lottery(in_team, ratio);
+    let result = teams.some(partialLottery, teams)
+    expect(result).toBe(false)
+  })
+  it("alone.", function () {
+    let ratio = 5
+    let team:SlackUser[] = [
+      new SlackUser('1', 'one')
+    ]
+    let teams:SlackUser[][] = []
+    for (var i = 0; i < ratio * TEST_BUFFER; i++) {
+      teams.push(team)
+    }
+    let partialLottery = (in_team:SlackUser[]):boolean => lottery(in_team, ratio);
+    let result = teams.some(partialLottery, teams)
+    expect(result).toBe(false)
   })
 })
