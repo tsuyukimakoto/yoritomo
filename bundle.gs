@@ -386,8 +386,12 @@ function send_message(data) {
     }
 }
 global.send_question = function (event) {
-    _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].remove_timer(event.triggerUid);
+    console.info('send_question');
+    if (event) {
+        _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].remove_timer(event.triggerUid);
+    }
     var today = new Date();
+    console.info(today);
     _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].prepareStorage(today);
     var actions = [];
     var times = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_times();
@@ -454,8 +458,9 @@ global.draw = function (event) {
             message += " ----- " + time + "\n";
             teams.forEach(function (team) {
                 team_no += 1;
-                if (team.length > 1 && lottery(lottery_ratio))
+                if (Object(_utils__WEBPACK_IMPORTED_MODULE_4__["lottery"])(team, lottery_ratio)) {
                     message += '当たり！';
+                }
                 message += " \u30C1\u30FC\u30E0 " + team_no + ": ";
                 team.forEach(function (person) {
                     message += "<@" + person.userId + "> ,";
@@ -473,12 +478,6 @@ global.set_timer = function () {
 global.init = function () {
     _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].initialize();
 };
-function lottery(ratio) {
-    if (ratio > 0) {
-        return 1 == Math.ceil(Math.random() * ratio);
-    }
-    return false;
-}
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
@@ -678,7 +677,7 @@ var StorageService = /** @class */ (function () {
 /*!**********************!*\
   !*** ./src/utils.ts ***!
   \**********************/
-/*! exports provided: date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, monday_of_week, separateData, time_to_hourminutes */
+/*! exports provided: date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, lottery, monday_of_week, separateData, time_to_hourminutes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -687,6 +686,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_filename", function() { return generate_filename; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_sheetname", function() { return generate_sheetname; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_sheetnames", function() { return generate_sheetnames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lottery", function() { return lottery; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monday_of_week", function() { return monday_of_week; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "separateData", function() { return separateData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "time_to_hourminutes", function() { return time_to_hourminutes; });
@@ -744,12 +744,31 @@ function separateData(data, max) {
     return result;
 }
 function date_to_day_of_the_week(today) {
+    console.log("date_to_day_of_the_week: today.getDay() -> " + today.getDay() + ": today -> " + today);
     return _constants__WEBPACK_IMPORTED_MODULE_0__["DAYS"][today.getDay()];
 }
 function time_to_hourminutes(time) {
     return time.split(':').map(function (num) {
         return Number(num.trim());
     });
+}
+function lottery(team, ratio) {
+    console.log("lottery: ratio is 1/" + ratio + " .");
+    if (!(team.length > 1)) {
+        console.log("alone team do not draw lottery, team.length: " + team.length + ".");
+        return false;
+    }
+    if (!(ratio > 0)) {
+        console.log("ratio is set to " + ratio + ".");
+        return false;
+    }
+    var result = Math.random() * ratio;
+    console.log("lottery result: " + result);
+    if (ratio == Math.ceil(result)) {
+        console.log("bingo! " + Math.ceil(result));
+        return true;
+    }
+    return false;
 }
 
 
