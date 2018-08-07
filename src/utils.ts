@@ -1,5 +1,5 @@
 import { DAYS } from './constants'
-import { ShiftTable, ShiftTables, SlackUser } from './models'
+import { Action, ShiftTable, ShiftTables, SlackUser } from './models'
 
 function monday_of_week(today: Date): Date {
   let firstday: Date = new Date(today.getTime())
@@ -50,7 +50,13 @@ function divide(data: SlackUser[], max: number): SlackUser[][] {
   }
   return teams
 }
-
+function chunk(actions: Action[], max: number): Action[][] {
+  let result: Action[][] = []
+  for (var i = 0; i < actions.length; i += max) {
+    result.push(actions.slice(i, max + i))
+  }
+  return result
+}
 function separateData(data: ShiftTable, max: number) {
   let result: ShiftTables = {}
   Object.keys(data).forEach(function(val: string) {
@@ -90,6 +96,7 @@ function lottery(team: SlackUser[], ratio: number): boolean {
 }
 
 export {
+  chunk,
   date_to_day_of_the_week,
   generate_filename,
   generate_sheetname,

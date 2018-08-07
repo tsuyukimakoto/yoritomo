@@ -1,6 +1,6 @@
 import { WORK_DAYS_OF_WEEK_DEFAULT } from '../src/constants'
-import { date_to_day_of_the_week, generate_filename, lottery, monday_of_week, generate_sheetnames, separateData } from '../src/utils'
-import { ShiftTable, SlackUser } from '../src/models'
+import { chunk, date_to_day_of_the_week, generate_filename, lottery, monday_of_week, generate_sheetnames, separateData } from '../src/utils'
+import { Action, ShiftTable, SlackUser } from '../src/models'
 
 describe("monday_of_week", () => {  
   it("same year, same month, monday", function () {  
@@ -232,4 +232,28 @@ describe("lottery", () => {
     let result = teams.some(partialLottery, teams)
     expect(result).toBe(false)
   })
+})
+
+describe("chunk", () => {
+ let data = [
+   new Action("1", "1", "1", "1"), new Action("2", "2", "2", "2"),
+   new Action("3", "3", "3", "3"), new Action("4", "4", "4", "4"),
+   new Action("5", "5", "5", "5"), new Action("6", "6", "6", "6")
+ ]
+ it("5", function () {
+   let result = chunk(data, 5)
+   expect(result.length).toBe(2)
+   expect(result[0].length).toBe(5)
+   expect(result[1].length).toBe(1)
+ })
+ it("6", function () {
+   let result = chunk(data, 6)
+   expect(result.length).toBe(1)
+   expect(result[0].length).toBe(6)
+ })
+ it("1", function () {
+   let result = chunk(data, 1)
+   expect(result.length).toBe(6)
+   expect(result[0].length).toBe(1)
+ })
 })

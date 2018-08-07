@@ -35,3 +35,6 @@ export class PostEvent {
 
 export type ShiftTable = { [key: string]: SlackUser[] }
 export type ShiftTables = { [key: string]: SlackUser[][] }
+export type Attachement = [
+  { actions?: Action[]; text?: string; callback_id?: string; color?: string }
+]

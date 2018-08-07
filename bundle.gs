@@ -399,14 +399,22 @@ global.send_question = function (event) {
         actions.push(new _models__WEBPACK_IMPORTED_MODULE_3__["Action"](val, val, 'button', "'" + val));
     });
     actions.push(new _models__WEBPACK_IMPORTED_MODULE_3__["Action"](CONFIRM_COMMAND, '確認する', 'button', CONFIRM_COMMAND));
+    var attachments = [
+        {
+            text: '何時に出ますか？（エラーが出たら確認を押してみてください）' // TODO i18n
+        }
+    ];
+    // 5 is max buttons
+    Object(_utils__WEBPACK_IMPORTED_MODULE_4__["chunk"])(actions, 5).forEach(function (chunked_actions) {
+        attachments.push({
+            text: '',
+            actions: chunked_actions,
+            color: '#ff9933',
+            callback_id: 'yoritomo'
+        });
+    });
     var data = {
-        attachments: [
-            {
-                actions: actions,
-                text: '何時に出ますか？（エラーが出たら確認を押してみてください）',
-                callback_id: 'yoritomo'
-            }
-        ]
+        attachments: attachments
     };
     if (_config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].is_workday(today)) {
         send_message(data);
@@ -677,11 +685,12 @@ var StorageService = /** @class */ (function () {
 /*!**********************!*\
   !*** ./src/utils.ts ***!
   \**********************/
-/*! exports provided: date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, lottery, monday_of_week, separateData, time_to_hourminutes */
+/*! exports provided: chunk, date_to_day_of_the_week, generate_filename, generate_sheetname, generate_sheetnames, lottery, monday_of_week, separateData, time_to_hourminutes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chunk", function() { return chunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "date_to_day_of_the_week", function() { return date_to_day_of_the_week; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_filename", function() { return generate_filename; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generate_sheetname", function() { return generate_sheetname; });
@@ -735,6 +744,13 @@ function divide(data, max) {
         j++;
     }
     return teams;
+}
+function chunk(actions, max) {
+    var result = [];
+    for (var i = 0; i < actions.length; i += max) {
+        result.push(actions.slice(i, max + i));
+    }
+    return result;
 }
 function separateData(data, max) {
     var result = {};

@@ -5,8 +5,8 @@ import TextOutput = GoogleAppsScript.Content.TextOutput
 import { ConfigService } from './config.service'
 import { StorageService } from './storage.service'
 import { ACTION_TEXT } from './constants'
-import { Action, SlackUser, PostEvent } from './models'
-import { lottery, separateData } from './utils'
+import { Action, Attachement, SlackUser, PostEvent } from './models'
+import { chunk, lottery, separateData } from './utils'
 
 declare var global: any
 
@@ -46,14 +46,23 @@ global.send_question = (event): void => {
   })
   actions.push(new Action(CONFIRM_COMMAND, '確認する', 'button', CONFIRM_COMMAND))
 
+  let attachments: Attachement = [
+    {
+      text: '何時に出ますか？（エラーが出たら確認を押してみてください）' // TODO i18n
+    }
+  ]
+  // 5 is max buttons
+  chunk(actions, 5).forEach(function(chunked_actions: Action[]) {
+    attachments.push({
+      text: '',
+      actions: chunked_actions,
+      color: '#ff9933',
+      callback_id: 'yoritomo'
+    })
+  })
+
   let data = {
-    attachments: [
-      {
-        actions: actions,
-        text: '何時に出ますか？（エラーが出たら確認を押してみてください）', // TODO i18n
-        callback_id: 'yoritomo'
-      }
-    ]
+    attachments: attachments
   }
   if (ConfigService.is_workday(today)) {
     send_message(data)
