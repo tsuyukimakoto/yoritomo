@@ -18,6 +18,8 @@ const DAYS_TO_NO: { [key: string]: number } = {
 
 const PROPERTY_FILE_ID: string = 'file_id'
 const PROPERTY_FOLDER_ID: string = 'folder_id'
+const PROPERTY_LOTTERY_MIN_RATIO: string = 'lottery_min_ratio'
+const PROPERTY_LOTTERY_MISS_COUNT: string = 'lottery_miss_count'
 const PROPERTY_LOTTERY_RATIO: string = 'lottery_ratio'
 const PROPERTY_MAX_MEMBERS: string = 'max_members'
 const PROPERTY_QUESTION_TIME: string = 'question_time'
@@ -42,6 +44,8 @@ export {
   Operations,
   PROPERTY_FILE_ID,
   PROPERTY_FOLDER_ID,
+  PROPERTY_LOTTERY_MIN_RATIO,
+  PROPERTY_LOTTERY_MISS_COUNT,
   PROPERTY_LOTTERY_RATIO,
   PROPERTY_MAX_MEMBERS,
   PROPERTY_QUESTION_TIME,

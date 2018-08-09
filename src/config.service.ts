@@ -4,6 +4,8 @@ import {
   DAYS,
   LOTTERRY_RATIO_DEFAULT,
   MAX_MEMBERS_DEFAULT,
+  PROPERTY_LOTTERY_MIN_RATIO,
+  PROPERTY_LOTTERY_MISS_COUNT,
   PROPERTY_LOTTERY_RATIO,
   PROPERTY_MAX_MEMBERS,
   PROPERTY_QUESTION_TIME,
@@ -164,5 +166,25 @@ export class ConfigService {
   static get_lottery_ratio(): number {
     let properties = PropertiesService.getScriptProperties()
     return Number(properties.getProperty(PROPERTY_LOTTERY_RATIO))
+  }
+  static get_lottery_min_ratio(): number {
+    let properties = PropertiesService.getScriptProperties()
+    let min_ratio = properties.getProperty(PROPERTY_LOTTERY_MIN_RATIO)
+    if (min_ratio == null) {
+      return Number(properties.getProperty(PROPERTY_LOTTERY_RATIO))
+    }
+    return Number(min_ratio)
+  }
+  static get_lottery_miss_count(): number {
+    let properties = PropertiesService.getScriptProperties()
+    let miss_count = properties.getProperty(PROPERTY_LOTTERY_MISS_COUNT)
+    if (miss_count == null) {
+      return 0
+    }
+    return Number(miss_count)
+  }
+  static set_lottery_miss_count(count: number): void {
+    let properties = PropertiesService.getScriptProperties()
+    properties.setProperty(PROPERTY_LOTTERY_MISS_COUNT, count.toString())
   }
 }

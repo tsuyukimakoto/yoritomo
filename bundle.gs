@@ -277,6 +277,26 @@ var ConfigService = /** @class */ (function () {
         var properties = PropertiesService.getScriptProperties();
         return Number(properties.getProperty(_constants__WEBPACK_IMPORTED_MODULE_0__["PROPERTY_LOTTERY_RATIO"]));
     };
+    ConfigService.get_lottery_min_ratio = function () {
+        var properties = PropertiesService.getScriptProperties();
+        var min_ratio = properties.getProperty(_constants__WEBPACK_IMPORTED_MODULE_0__["PROPERTY_LOTTERY_MIN_RATIO"]);
+        if (min_ratio == null) {
+            return Number(properties.getProperty(_constants__WEBPACK_IMPORTED_MODULE_0__["PROPERTY_LOTTERY_RATIO"]));
+        }
+        return Number(min_ratio);
+    };
+    ConfigService.get_lottery_miss_count = function () {
+        var properties = PropertiesService.getScriptProperties();
+        var miss_count = properties.getProperty(_constants__WEBPACK_IMPORTED_MODULE_0__["PROPERTY_LOTTERY_MISS_COUNT"]);
+        if (miss_count == null) {
+            return 0;
+        }
+        return Number(miss_count);
+    };
+    ConfigService.set_lottery_miss_count = function (count) {
+        var properties = PropertiesService.getScriptProperties();
+        properties.setProperty(_constants__WEBPACK_IMPORTED_MODULE_0__["PROPERTY_LOTTERY_MISS_COUNT"], count.toString());
+    };
     return ConfigService;
 }());
 
@@ -288,7 +308,7 @@ var ConfigService = /** @class */ (function () {
 /*!**************************!*\
   !*** ./src/constants.ts ***!
   \**************************/
-/*! exports provided: ACTION_TEXT, DAYS, DAYS_TO_NO, FOLDER_NAME, LOTTERRY_RATIO_DEFAULT, MAX_MEMBERS_DEFAULT, QUESTION_TIME_DEFAULT, Operations, PROPERTY_FILE_ID, PROPERTY_FOLDER_ID, PROPERTY_LOTTERY_RATIO, PROPERTY_MAX_MEMBERS, PROPERTY_QUESTION_TIME, PROPERTY_TIMES, PROPERTY_WEBFOOK_URL, PROPERTY_WORK_DAYS_OF_WEEK, TIMES_DEFAULT, WORK_DAYS_OF_WEEK_DEFAULT */
+/*! exports provided: ACTION_TEXT, DAYS, DAYS_TO_NO, FOLDER_NAME, LOTTERRY_RATIO_DEFAULT, MAX_MEMBERS_DEFAULT, QUESTION_TIME_DEFAULT, Operations, PROPERTY_FILE_ID, PROPERTY_FOLDER_ID, PROPERTY_LOTTERY_MIN_RATIO, PROPERTY_LOTTERY_MISS_COUNT, PROPERTY_LOTTERY_RATIO, PROPERTY_MAX_MEMBERS, PROPERTY_QUESTION_TIME, PROPERTY_TIMES, PROPERTY_WEBFOOK_URL, PROPERTY_WORK_DAYS_OF_WEEK, TIMES_DEFAULT, WORK_DAYS_OF_WEEK_DEFAULT */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -303,6 +323,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Operations", function() { return Operations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_FILE_ID", function() { return PROPERTY_FILE_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_FOLDER_ID", function() { return PROPERTY_FOLDER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_LOTTERY_MIN_RATIO", function() { return PROPERTY_LOTTERY_MIN_RATIO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_LOTTERY_MISS_COUNT", function() { return PROPERTY_LOTTERY_MISS_COUNT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_LOTTERY_RATIO", function() { return PROPERTY_LOTTERY_RATIO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_MAX_MEMBERS", function() { return PROPERTY_MAX_MEMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROPERTY_QUESTION_TIME", function() { return PROPERTY_QUESTION_TIME; });
@@ -330,6 +352,8 @@ var DAYS_TO_NO = {
 };
 var PROPERTY_FILE_ID = 'file_id';
 var PROPERTY_FOLDER_ID = 'folder_id';
+var PROPERTY_LOTTERY_MIN_RATIO = 'lottery_min_ratio';
+var PROPERTY_LOTTERY_MISS_COUNT = 'lottery_miss_count';
 var PROPERTY_LOTTERY_RATIO = 'lottery_ratio';
 var PROPERTY_MAX_MEMBERS = 'max_members';
 var PROPERTY_QUESTION_TIME = 'question_time';
@@ -451,12 +475,15 @@ global.draw = function (event) {
     var today = new Date();
     var data = _storage_service__WEBPACK_IMPORTED_MODULE_1__["StorageService"].getData(today);
     var max_members = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_max_members();
+    var lottery_min_ratio = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_lottery_min_ratio();
     var lottery_ratio = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_lottery_ratio();
+    var lottery_miss_count = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_lottery_miss_count();
     var result = Object(_utils__WEBPACK_IMPORTED_MODULE_4__["separateData"])(data, max_members);
     var argument_time = _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_trigger_argument(event.triggerUid);
     _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].remove_timer(event.triggerUid);
     var message = '今日のランチは\n';
     var team_no = 0;
+    var changed_ratio;
     _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].get_times().forEach(function (time) {
         if (argument_time !== time) {
             return;
@@ -466,8 +493,17 @@ global.draw = function (event) {
             message += " ----- " + time + "\n";
             teams.forEach(function (team) {
                 team_no += 1;
-                if (Object(_utils__WEBPACK_IMPORTED_MODULE_4__["lottery"])(team, lottery_ratio)) {
-                    message += '当たり！';
+                if (team.length > 1) {
+                    changed_ratio = lottery_ratio - lottery_miss_count;
+                    if (changed_ratio < lottery_min_ratio)
+                        changed_ratio = lottery_min_ratio;
+                    if (Object(_utils__WEBPACK_IMPORTED_MODULE_4__["lottery"])(team, changed_ratio)) {
+                        message += '当たり！';
+                        lottery_miss_count = 0;
+                    }
+                    else {
+                        lottery_miss_count += 1;
+                    }
                 }
                 message += " \u30C1\u30FC\u30E0 " + team_no + ": ";
                 team.forEach(function (person) {
@@ -476,6 +512,7 @@ global.draw = function (event) {
                 message += '\n';
             });
             message += '\n';
+            _config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"].set_lottery_miss_count(lottery_miss_count);
             send_message({ text: message });
         }
     });
@@ -780,7 +817,7 @@ function lottery(team, ratio) {
     }
     var result = Math.random() * ratio;
     console.log("lottery result: " + result);
-    if (ratio == Math.ceil(result)) {
+    if (1 == Math.ceil(result)) {
         console.log("bingo! " + Math.ceil(result));
         return true;
     }

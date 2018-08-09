@@ -100,7 +100,9 @@ global.draw = (event): void => {
   let today = new Date()
   let data = StorageService.getData(today)
   let max_members = ConfigService.get_max_members()
+  let lottery_min_ratio = ConfigService.get_lottery_min_ratio()
   let lottery_ratio = ConfigService.get_lottery_ratio()
+  let lottery_miss_count = ConfigService.get_lottery_miss_count()
   let result = separateData(data, max_members)
 
   let argument_time = ConfigService.get_trigger_argument(event.triggerUid)
@@ -109,6 +111,7 @@ global.draw = (event): void => {
   let message = '今日のランチは\n'
 
   let team_no = 0
+  let changed_ratio: number
 
   ConfigService.get_times().forEach(function(time: string) {
     if (argument_time !== time) {
@@ -119,8 +122,15 @@ global.draw = (event): void => {
       message += ` ----- ${time}\n`
       teams.forEach(function(team: SlackUser[]) {
         team_no += 1
-        if (lottery(team, lottery_ratio)) {
-          message += '当たり！'
+        if (team.length > 1) {
+          changed_ratio = lottery_ratio - lottery_miss_count
+          if (changed_ratio < lottery_min_ratio) changed_ratio = lottery_min_ratio
+          if (lottery(team, changed_ratio)) {
+            message += '当たり！'
+            lottery_miss_count = 0
+          } else {
+            lottery_miss_count += 1
+          }
         }
         message += ` チーム ${team_no}: `
         team.forEach(function(person) {
@@ -129,6 +139,7 @@ global.draw = (event): void => {
         message += '\n'
       })
       message += '\n'
+      ConfigService.set_lottery_miss_count(lottery_miss_count)
       send_message({ text: message })
     }
   })
