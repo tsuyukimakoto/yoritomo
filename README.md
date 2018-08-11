@@ -27,7 +27,7 @@
 
 ### Slack経由でランチに行きたい時間をサインアップ
 
-![行きたい時間のボタンを押す](./mics/images/question.png)
+[行きたい時間のボタンを押す](https://raw.githubusercontent.com/tsuyukimakoto/yoritomo/master/misc/images/question.png)
 
 行きたい時間のボタンを押します。
 
@@ -36,13 +36,13 @@
 
 ### 予定時間の10分前になると
 
-![チーム分けされる](./mics/images/devide_team.png)
+[チーム分けされる](https://raw.githubusercontent.com/tsuyukimakoto/yoritomo/master/misc/images/devide_team.png)
 
 適当に集まってランチに出ましょう
 
 ### 当たり！
 
-![当たり](./mics/images/lottery.png)
+[当たり](https://raw.githubusercontent.com/tsuyukimakoto/yoritomo/master/misc/images/lottery.png)
 
 チームの前に `当たり！` と出ます（地味）。
 
