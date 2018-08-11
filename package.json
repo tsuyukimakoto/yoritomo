@@ -29,7 +29,7 @@
     "@types/jest": "23.3.1",
     "cpx": "1.5.0",
     "gas-webpack-plugin": "0.3.0",
-    "jest": "23.4.2",
+    "jest": "23.5.0",
     "prettier": "1.14.2",
     "rimraf": "2.6.2",
     "ts-jest": "23.1.3",
