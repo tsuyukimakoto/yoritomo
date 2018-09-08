@@ -20,9 +20,9 @@
   version "0.0.27"
   resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.27.tgz#a848321ff956faa8cf5a11b56027842d9e141406"
 
-"@types/jest@23.3.1":
-  version "23.3.1"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.1.tgz#a4319aedb071d478e6f407d1c4578ec8156829cf"
+"@types/jest@23.3.2":
+  version "23.3.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
 
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
