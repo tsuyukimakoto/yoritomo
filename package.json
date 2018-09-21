@@ -32,7 +32,7 @@
     "jest": "23.6.0",
     "prettier": "1.14.3",
     "rimraf": "2.6.2",
-    "ts-jest": "23.1.4",
+    "ts-jest": "23.10.1",
     "ts-loader": "5.1.1",
     "tslint": "5.11.0",
     "tslint-config-prettier": "1.15.0",

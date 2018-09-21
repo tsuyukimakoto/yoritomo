@@ -4,6 +4,7 @@
     "target": "es5",
     "module": "es2015",
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "types": ["google-apps-script", "jest"]
   }
 }
