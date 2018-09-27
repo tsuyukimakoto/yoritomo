@@ -105,6 +105,10 @@ export class StorageService {
   static getSpreadSheet(today: Date): Spreadsheet {
     let properties = PropertiesService.getScriptProperties()
     let file_id = properties.getProperty(PROPERTY_FILE_ID)
+    if (file_id == null) {
+      console.error(`MISSING PROPERTY_FILE_ID, SOMETHING WRONG!`)
+      throw new Error('MISSING PROPERTY_FILE_ID')
+    }
     return SpreadsheetApp.openById(file_id)
   }
   static putData(today: Date, id: string, name: string, when: string): Operations {

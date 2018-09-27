@@ -66,7 +66,8 @@ function separateData(data: ShiftTable, max: number) {
 }
 
 function date_to_day_of_the_week(today: Date): string {
-  console.log(`date_to_day_of_the_week: today.getDay() -> ${today.getDay()}: today -> ${today}`)
+  if (false)
+    console.log(`date_to_day_of_the_week: today.getDay() -> ${today.getDay()}: today -> ${today}`)
   return DAYS[today.getDay()]
 }
 
@@ -77,19 +78,20 @@ function time_to_hourminutes(time: string): number[] {
 }
 
 function lottery(team: SlackUser[], ratio: number): boolean {
-  console.log(`lottery: ratio is 1/${ratio} .`)
+  let debug: boolean = false
+  if (debug) console.log(`lottery: ratio is 1/${ratio} .`)
   if (!(team.length > 1)) {
-    console.log(`alone team do not draw lottery, team.length: ${team.length}.`)
+    if (debug) console.log(`alone team do not draw lottery, team.length: ${team.length}.`)
     return false
   }
   if (!(ratio > 0)) {
-    console.log(`ratio is set to ${ratio}.`)
+    if (debug) console.log(`ratio is set to ${ratio}.`)
     return false
   }
   let result = Math.random() * ratio
-  console.log(`lottery result: ${result}`)
+  if (debug) console.log(`lottery result: ${result}`)
   if (1 == Math.ceil(result)) {
-    console.log(`bingo! ${Math.ceil(result)}`)
+    if (debug) console.log(`bingo! ${Math.ceil(result)}`)
     return true
   }
   return false
