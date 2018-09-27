@@ -97,10 +97,21 @@ export class ConfigService {
   }
   static get_trigger_argument(trigger_unique_id): string {
     let properties = PropertiesService.getScriptProperties()
-    return properties.getProperty(`trigger_${trigger_unique_id}`)
+    let trigger_arg = properties.getProperty(`trigger_${trigger_unique_id}`)
+    if (trigger_arg == null) throw new Error('MISSING PROPERTY trigger_${trigger_unique_id}')
+    return trigger_arg
   }
   static set_timer_send_question(properties: GoogleAppsScript.Properties.Properties): void {
-    let hourminutes = time_to_hourminutes(properties.getProperty(PROPERTY_QUESTION_TIME))
+    let question_time = properties.getProperty(PROPERTY_QUESTION_TIME)
+    if (question_time == null) {
+      console.error(
+        `MISSING PROPERTY_QUESTION_TIME, YOU SHOULD TO SET SCRIPT PROPERTY(${PROPERTY_QUESTION_TIME}).`
+      )
+      throw new Error(
+        'MISSING PROPERTY_QUESTION_TIME, YOU SHOULD TO SET SCRIPT PROPERTY(${PROPERTY_QUESTION_TIME}).'
+      )
+    }
+    let hourminutes = time_to_hourminutes(question_time)
     let timer = new Date()
     timer.setHours(hourminutes[0])
     timer.setMinutes(hourminutes[1])
@@ -146,17 +157,24 @@ export class ConfigService {
       console.error(
         `No WebhookURL found. You need set webhook_url to script property ${PROPERTY_WEBFOOK_URL}.`
       )
+      throw new Error(
+        `No WebhookURL found. You need set webhook_url to script property ${PROPERTY_WEBFOOK_URL}.`
+      )
     }
     return webhook_url
   }
   static get_times(): string[] {
     let properties = PropertiesService.getScriptProperties()
-    let times = properties
-      .getProperty(PROPERTY_TIMES)
-      .split(',')
-      .map(function(item) {
-        return item.trim()
-      })
+    let property_tiems = properties.getProperty(PROPERTY_TIMES)
+    if (property_tiems == null) {
+      console.error(
+        `MISSING PROPERTY_QUESTION_TIME, YOU SHOULD TO SET SCRIPT PROPERTY(${PROPERTY_QUESTION_TIME}).`
+      )
+      throw new Error(`MISSING PROPERTY_QUESTION_TIME, YOU SHOULD TO SET SCRIPT PROPERTY(${PROPERTY_QUESTION_TIME}).`)
+    }
+    let times = property_tiems.split(',').map(function(item) {
+      return item.trim()
+    })
     return times
   }
   static get_max_members(): number {
