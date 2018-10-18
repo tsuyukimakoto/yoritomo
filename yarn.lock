@@ -16,9 +16,9 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@types/google-apps-script@0.0.29":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.29.tgz#37d281a18cd27308404d58dba3667528b05e7a92"
+"@types/google-apps-script@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.30.tgz#8a4412bc37f16e96f678acd6502fcef19bf6e2cc"
 
 "@types/jest@23.3.5":
   version "23.3.5"
