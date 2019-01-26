@@ -1648,19 +1648,19 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-gas-entry-generator@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gas-entry-generator/-/gas-entry-generator-1.1.0.tgz#89c0e297d8299e07a142f4df28d7d2940f78b6c2"
+gas-entry-generator@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/gas-entry-generator/-/gas-entry-generator-1.1.1.tgz#71d142c1e665d9d6b19ea620c472da4d49907ae2"
   dependencies:
     escodegen "1.10.0"
     esprima "4.0.1"
     estraverse "4.2.0"
 
-gas-webpack-plugin@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gas-webpack-plugin/-/gas-webpack-plugin-1.0.1.tgz#33d7a3b84c957a0b8bae87dafbbf085cd4b95574"
+gas-webpack-plugin@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gas-webpack-plugin/-/gas-webpack-plugin-1.0.2.tgz#710ed4d29f5ea04e32ce3e173a608bf12635770b"
   dependencies:
-    gas-entry-generator "1.1.0"
+    gas-entry-generator "1.1.1"
 
 gauge@~2.7.3:
   version "2.7.4"
