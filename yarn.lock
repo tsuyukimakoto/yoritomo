@@ -117,9 +117,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@types/google-apps-script@0.0.36":
-  version "0.0.36"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.36.tgz#c8359fe6c31fdc8b96d6749d6cb9c441d8c29519"
+"@types/google-apps-script@0.0.37":
+  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.37.tgz#8e070b6e3784960e931c714196df6a1de9f7fe5e"
 
 "@types/jest@24.0.0":
   version "24.0.0"
