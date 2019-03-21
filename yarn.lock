@@ -285,9 +285,9 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/google-apps-script@0.0.38":
-  version "0.0.38"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.38.tgz#3e20fc6b7ed1233e2828d6b39522f284033eb766"
+"@types/google-apps-script@0.0.39":
+  version "0.0.39"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-0.0.39.tgz#3db32978133e951555826848ce0b52b4212f80ac"
 
 "@types/istanbul-lib-coverage@^1.1.0":
   version "1.1.0"
