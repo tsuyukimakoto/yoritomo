@@ -448,9 +448,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
 
-"@types/google-apps-script@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-1.0.10.tgz#7afc1bf954c8e2dc5f5784f5e3c752c06a31ae8a"
+"@types/google-apps-script@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-1.0.11.tgz#28f97c3cffda4ea4d477e3057799575b9b466b7e"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.1"
