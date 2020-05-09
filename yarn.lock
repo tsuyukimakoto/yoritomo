@@ -537,9 +537,9 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
 
-"@types/google-apps-script@1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-1.0.13.tgz#05a50cbc885cb0bf46a59c8b161de6120ab68356"
+"@types/google-apps-script@1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@types/google-apps-script/-/google-apps-script-1.0.14.tgz#194d0d1c5236651ddae03c512891605c88501839"
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.3"
