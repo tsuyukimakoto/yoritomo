@@ -5038,9 +5038,9 @@ ts-jest@25.5.0:
     semver "6.x"
     yargs-parser "18.x"
 
-ts-loader@7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.2.tgz#465bc904aea4c331e9550e7c7d75dd17a0b7c24c"
+ts-loader@7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.3.tgz#1ba06fd3dae612ecf8b952f89145f9ac7489805f"
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
