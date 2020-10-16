@@ -26,7 +26,7 @@
   "homepage": "https://github.com/tsuyukimakoto/yoritomo#readme",
   "devDependencies": {
     "@types/google-apps-script": "1.0.16",
-    "@types/jest": "26.0.10",
+    "@types/jest": "26.0.14",
     "cpx": "1.5.0",
     "gas-webpack-plugin": "1.0.5",
     "jest": "26.0.1",
