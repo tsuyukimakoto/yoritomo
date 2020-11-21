@@ -64,7 +64,7 @@ export class StorageService {
   }
   static confirmData(today: Date, id: string): string {
     let spreadsheet = StorageService.getSpreadSheet(today)
-    let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
+    let sheet = this.getSheet(spreadsheet, today)
     let max_row = sheet.getLastRow()
     if (max_row == 0) return ''
 
@@ -113,13 +113,17 @@ export class StorageService {
   }
   static putData(today: Date, id: string, name: string, when: string): Operations {
     let spreadsheet = StorageService.getSpreadSheet(today)
-    let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
+    let sheet = this.getSheet(spreadsheet, today)
+    if (sheet === null) {
+      console.error(`MISSING SHEET, SOMETHING WRONG!`)
+      throw new Error('MISSING PROPERTY_FILE_ID')
+    }
     return StorageService.modifyData(sheet, id, name, when)
   }
   static getData(today: Date): ShiftTable {
     let properties = PropertiesService.getScriptProperties()
     let spreadsheet = StorageService.getSpreadSheet(today)
-    let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
+    let sheet = this.getSheet(spreadsheet, today)
     let times = ConfigService.get_times()
     let result: ShiftTable = {}
 
@@ -142,4 +146,13 @@ export class StorageService {
     }
     return result
   }
+  static getSheet(spreadsheet: Spreadsheet, today: Date): Sheet {
+    let sheet = spreadsheet.getSheetByName(generate_sheetname(today))
+    if(sheet == null) {
+      console.error(`MISSING Date Sheet! today`)
+      throw new Error('MISSING Date Sheet!')
+    }
+    return sheet
+  }
+  
 }
