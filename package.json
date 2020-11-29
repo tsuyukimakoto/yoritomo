@@ -28,7 +28,7 @@
     "@types/google-apps-script": "1.0.17",
     "@types/jest": "26.0.15",
     "cpx": "1.5.0",
-    "gas-webpack-plugin": "1.2.1",
+    "gas-webpack-plugin": "1.2.2",
     "jest": "26.6.1",
     "prettier": "2.2.0",
     "rimraf": "3.0.2",
